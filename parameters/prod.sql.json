@@ -1,0 +1,39 @@
+{
+  "serviceName": "sql",
+  "tagSuffix": "prod",
+  "sqlConfig": {
+    "serverName": "prod-sqlserver01",
+    "location": "eastus",
+    "adminLogin": "sqladminuser",
+    "tags": {
+      "Owner": "FinOps",
+      "Environment": "Production"
+    },
+    "firewallRules": [
+      {
+        "name": "AllowAllAzureIPs",
+        "startIpAddress": "0.0.0.0",
+        "endIpAddress": "0.0.0.0"
+      }
+    ],
+    "databaseName": "finance_db",
+    "databaseSku": {
+      "name": "S0",
+      "tier": "Standard",
+      "capacity": 10
+    },
+    "databaseProperties": {
+      "collation": "SQL_Latin1_General_CP1_CI_AS",
+      "zoneRedundant": false,
+      "readScale": "Disabled"
+    },
+    "databaseVulnerabilityRecurringScans": {
+      "isEnabled": true,
+      "emailSubscriptionAdmins": true,
+      "emails": [
+        "finops-secure@example.com"
+      ]
+    }
+  },
+  "vulnerabilityAssessmentsStoragePath": "https://mystorage.blob.core.windows.net/sqlva"
+}

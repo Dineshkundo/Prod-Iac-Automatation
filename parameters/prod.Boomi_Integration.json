@@ -1,0 +1,113 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "serviceName": { "value": "Boomi_Integration" },
+      "tagSuffix":   { "value": "prod" },
+      "location": { "value": "eastus" },
+      "vms": {
+        "value": [
+          {
+            "name": "RHELDevQa",
+            "zones": [],
+            "tags": { "Env": "prod" },
+            "vmSize": "Standard_B4ms",
+            "additionalCapabilities": {},
+            "imageReference": {
+              "publisher": "RedHat",
+              "offer": "RHEL",
+              "sku": "7lvm-gen2",
+              "version": "latest"
+            },
+            "osDisk": {
+              "osType": "Linux",
+              "name": "RHELDevQa_OsDisk",
+              "caching": "ReadWrite",
+              "storageAccountType": "Premium_LRS",
+              "id": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Compute/disks/RHELDevQa_OsDisk",
+              "deleteOption": "Detach",
+              "diskSizeGB": 64
+            },
+            "dataDisks": [
+              {
+                "lun": 0,
+                "name": "RHELDevQa-datadisk1",
+                "createOption": "Attach",
+                "caching": "None",
+                "managedDisk": {
+                  "storageAccountType": "Standard_LRS",
+                  "id": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Compute/disks/RHELDevQa-datadisk1"
+                },
+                "deleteOption": "Detach",
+                "diskSizeGB": 64,
+                "toBeDetached": false
+              }
+            ],
+            "osProfile": {
+              "computerName": "RHELDevQa",
+              "adminUsername": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/rhel-admin-username/)",
+              "linuxConfiguration": {
+                "disablePasswordAuthentication": false,
+                "provisionVMAgent": true
+              }
+            },
+            "nicId": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Network/networkInterfaces/rheldevqanic",
+            "extension": {
+              "name": "enablevmAccess",
+              "publisher": "Microsoft.OSTCExtensions",
+              "type": "VMAccessForLinux",
+              "typeHandlerVersion": "1.5",
+              "settings": {},
+              "protectedSettings": {
+                "username": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/rhel-admin-username/)",
+                "password": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/rhel-admin-password/)"
+              }
+            }
+          },
+          {
+            "name": "Boomi-Integration",
+            "zones": [ "1" ],
+            "tags": { "Bhoomi": "Integration server" },
+            "vmSize": "Standard_D2s_v3",
+            "additionalCapabilities": { "hibernationEnabled": false },
+            "imageReference": {
+              "publisher": "MicrosoftWindowsServer",
+              "offer": "WindowsServer",
+              "sku": "2019-datacenter-gensecond",
+              "version": "latest"
+            },
+            "osDisk": {
+              "osType": "Windows",
+              "name": "Boomi-Integration_OsDisk",
+              "caching": "ReadWrite",
+              "storageAccountType": "StandardSSD_LRS",
+              "id": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Compute/disks/Boomi-Integration_OsDisk",
+              "deleteOption": "Delete",
+              "diskSizeGB": 127
+            },
+            "dataDisks": [],
+            "osProfile": {
+              "computerName": "Boomi-Integrati",
+              "adminUsername": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/boomi-admin-username/)",
+              "windowsConfiguration": {
+                "provisionVMAgent": true,
+                "enableAutomaticUpdates": true
+              }
+            },
+            "nicId": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Network/networkInterfaces/boomi-integration714_z1",
+            "extension": {
+              "name": "enablevmAccess",
+              "publisher": "Microsoft.Compute",
+              "type": "VMAccessAgent",
+              "typeHandlerVersion": "2.0",
+              "settings": {
+                "userName": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/boomi-admin-username/)"
+              },
+              "protectedSettings": {}
+            }
+          }
+        ]
+      }
+    }
+  }
+  

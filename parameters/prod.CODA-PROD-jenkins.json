@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "eastus"
+    },
+    "serviceName": {
+      "value": "Jenkins-vm"
+    },
+    "tagSuffix": {
+      "value": "prod"
+    },
+    "keyVaultName": {
+      "value": "CODA-PROD-Azure-KeyVault"
+    },
+    "secretNames": {
+      "value": {
+        "username": "PROD-JENKINS-USERNAME",
+        "password": "PROD-JENKINS-PASSWORD",
+        "sshKey": "PROD-JENKINS-SSH-PUB",
+        "reset_ssh": "",
+        "remove_user": "",
+        "expiration": ""
+      }
+    },
+    "vmConfig": {
+      "value": {
+        "name": "CODA-PROD-Jenkins",
+        "location": "eastus",
+        "vmSize": "Standard_D4s_v3",
+        "zones": ["2"],
+        "adminUsername": "jenkinsadmin",
+        "image": {
+          "publisher": "canonical",
+          "offer": "0001-com-ubuntu-server-jammy",
+          "sku": "22_04-lts-gen2",
+          "version": "latest"
+        },
+        "osDiskSizeGB": 128,
+        "osDiskId": "",
+        "privateIp": "10.0.2.5",
+        "publicIp": "52.188.31.47",
+        "networkInterfaceId": "/subscriptions/<sub-id>/resourceGroups/CODA_RG/providers/Microsoft.Network/networkInterfaces/jenkins-nic"
+      }
+    }
+  }
+}

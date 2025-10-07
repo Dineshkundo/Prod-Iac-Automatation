@@ -1,0 +1,45 @@
+{
+  "serviceName": { "value": "aks" },
+  "tagSuffix": { "value": "prod" },
+  "aksConfig": {
+    "location": "eastus",
+    "clusterName": "CODA-PROD-AKS-Cluster",
+    "vnetResourceId": "/subscriptions/xxxx/resourceGroups/CODA-PROD-RG/providers/Microsoft.Network/virtualNetworks/CODA-Prod-VNet",
+    "sshPublicKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ...",
+    "adminUsername": "aksadmin",
+    "kubernetesVersion": "1.31.1",
+    "authorizedIpRanges": ["10.1.4.5/32","38.79.64.66/32"],
+    "systemPool": {
+      "name": "prodnodepool",
+      "vmSize": "Standard_D8s_v3",
+      "count": 2,
+      "minCount": 1,
+      "maxCount": 5,
+      "subnetName": "CODA-PROD-Private-Subnet",
+      "maxPods": 50,
+      "mode": "System",
+      "enableAutoScaling": true,
+      "nodeLabels": {}
+    },
+    "userPools": [
+      {
+        "name": "cacheservice",
+        "vmSize": "Standard_D8s_v3",
+        "count": 1,
+        "minCount": 1,
+        "maxCount": 3,
+        "subnetName": "CODA-PROD-Private-Subnet",
+        "maxPods": 250,
+        "mode": "User",
+        "enableAutoScaling": true,
+        "nodeLabels": { "pool": "cacheservice" },
+        "nodeTaints": ["app=cacheservice:NoSchedule"]
+      }
+    ]
+  },
+  "storageConfig": {
+    "storageName": "codaprodstorage",
+    "sku": "Standard_GRS",
+    "accessTier": "Hot"
+  }
+}

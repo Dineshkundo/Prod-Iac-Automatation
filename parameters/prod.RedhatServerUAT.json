@@ -1,0 +1,102 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "serviceName": { "value": "RedhatServerUAT" },
+    "tagSuffix":   { "value": "UAT" },
+    "location": { "value": "eastus" },
+    "vms": {
+      "value": [
+        {
+          "name": "RedhatServerUAT",
+          "size": "Standard_B4ms",
+          "tags": {
+            "Env": "UAT"
+          },
+          "adminUsername": "adminuser",
+          "nicId": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.Network/networkInterfaces/redhatnicuat",
+          "bootDiagnostics": true,
+          "encryptionAtHost": true,
+          "imageReference": {
+            "publisher": "RedHat",
+            "offer": "RHEL",
+            "sku": "7lvm-gen2",
+            "version": "latest"
+          },
+          "osDisk": {
+            "osType": "Linux",
+            "name": "RedhatServerUAT_OsDisk",
+            "createOption": "FromImage",
+            "caching": "ReadWrite",
+            "managedDisk": {
+              "storageAccountType": "Premium_LRS",
+              "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.Compute/disks/RedhatServerUAT_OsDisk_1"
+            },
+            "deleteOption": "Detach",
+            "diskSizeGB": 64
+          },
+          "dataDisks": [
+            {
+              "lun": 0,
+              "name": "RedhatServerUAT-datadisk1",
+              "createOption": "Attach",
+              "caching": "None",
+              "managedDisk": {
+                "storageAccountType": "Standard_LRS",
+                "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.Compute/disks/RedhatServerUAT-datadisk1"
+              },
+              "deleteOption": "Detach",
+              "diskSizeGB": 64,
+              "toBeDetached": false
+            }
+          ],
+          "linuxConfiguration": {
+            "disablePasswordAuthentication": false,
+            "provisionVMAgent": true,
+            "patchSettings": {
+              "patchMode": "ImageDefault",
+              "assessmentMode": "AutomaticByPlatform"
+            },
+            "enableVMAgentPlatformUpdates": false
+          },
+          "extension": {
+            "name": "enablevmAccess",
+            "publisher": "Microsoft.OSTCExtensions",
+            "type": "VMAccessForLinux",
+            "typeHandlerVersion": "1.5",
+            "settings": {},
+            "protectedSettings": {
+              "username": {
+                "reference": {
+                  "keyVault": {
+                    "id": "/subscriptions/<subid>/resourceGroups/<rg>/providers/Microsoft.KeyVault/vaults/<kvName>"
+                  },
+                  "secretName": "vmAdminUsername"
+                }
+              },
+              "password": {
+                "reference": {
+                  "keyVault": {
+                    "id": "/subscriptions/<subid>/resourceGroups/<rg>/providers/Microsoft.KeyVault/vaults/<kvName>"
+                  },
+                  "secretName": "vmAdminPassword"
+                }
+              },
+              "ssh_key": {
+                "reference": {
+                  "keyVault": {
+                    "id": "/subscriptions/<subid>/resourceGroups/<rg>/providers/Microsoft.KeyVault/vaults/<kvName>"
+                  },
+                  "secretName": "vmSshKey"
+                }
+              },
+              "reset_ssh": "true",
+              "remove_user": "false",
+              "expiration": "2025-12-31"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
