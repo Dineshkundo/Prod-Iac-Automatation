@@ -51,7 +51,7 @@ param createKeyVault bool = false
 param keyVaultName string
 
 @description('Configuration object for Key Vault (used only if createKeyVault = true)')
-param keyVaultConfig object
+param keyVaultConfig object = {}
 
 @description('Mapping of secret names inside Key Vault')
 param secretNames object
