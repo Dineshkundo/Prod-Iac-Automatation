@@ -5,7 +5,7 @@
       "serviceName": { "value": "Boomi_Integration" },
       "tagSuffix":   { "value": "prod" },
       "location": { "value": "eastus" },
-      "vms": {
+      "vmConfig": {
         "value": [
           {
             "name": "RHELDevQa",
