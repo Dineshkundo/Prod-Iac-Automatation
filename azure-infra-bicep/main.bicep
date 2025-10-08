@@ -48,16 +48,16 @@ param tagSuffix string = 'prod'
 param createKeyVault bool = false
 
 @description('Name of the Key Vault to create or reference')
-param keyVaultName string
+param keyVaultName string = ' '  // e.g., 'myKeyVault'
 
 @description('Configuration object for Key Vault (used only if createKeyVault = true)')
 param keyVaultConfig object = {}
 
 @description('Mapping of secret names inside Key Vault')
-param secretNames object
+param secretNames object = {}
 
 @description('VM configuration (non-sensitive)')
-param vmConfig object
+param vmConfig object = {}
 
 
 @description('Array of VM configurations')
