@@ -5,6 +5,22 @@
     "serviceName": { "value": "Matching-Service-QA-Backup" },
     "tagSuffix": { "value": "dev" },
     "location": { "value": "eastus" },
+
+    "keyVaultName": {
+      "value": "<your-keyvault-name>"
+    },
+    "secretNames": {
+      "value": [
+        "vmAdminUsername",
+        "extensions_enablevmAccess_username",
+        "extensions_enablevmAccess_password",
+        "extensions_enablevmAccess_ssh_key",
+        "extensions_enablevmAccess_reset_ssh",
+        "extensions_enablevmAccess_remove_user",
+        "extensions_enablevmAccess_expiration"
+      ]
+    },
+
     "vmConfig": {
       "value": [
         {
@@ -12,12 +28,14 @@
           "tags": { "matching": "qa-backup" },
           "zone": "1",
           "vmSize": "Standard_D8s_v3",
+
           "image": {
             "publisher": "canonical",
             "offer": "0001-com-ubuntu-server-jammy",
             "sku": "22_04-lts-gen2",
             "version": "latest"
           },
+
           "osDisk": {
             "name": "matching-qa-backup-1",
             "sizeGB": 64,
@@ -27,27 +45,35 @@
             "caching": "ReadWrite",
             "deleteOption": "Detach"
           },
+
           "dataDisks": [],
+
           "nicId": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.Network/networkInterfaces/matching-service-qa-backup123_z1",
+
           "security": { "encryptionAtHost": true },
           "diagnostics": { "bootEnabled": true },
+
           "osProfile": {
             "computerName": "Matching-Service-QA-Backup",
-            "adminUsername": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/vmAdminUsername/)",
+            "adminUsername": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/vmAdminUsername/)",
             "linuxConfiguration": {
               "disablePasswordAuthentication": true,
               "ssh": {
                 "publicKeys": [
                   {
                     "path": "/home/adminuser/.ssh/authorized_keys",
-                    "keyData": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/extensions_enablevmAccess_ssh_key/)"
+                    "keyData": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/extensions_enablevmAccess_ssh_key/)"
                   }
                 ]
               },
               "provisionVMAgent": true,
-              "patchSettings": { "patchMode": "AutomaticByPlatform", "assessmentMode": "AutomaticByPlatform" }
+              "patchSettings": {
+                "patchMode": "AutomaticByPlatform",
+                "assessmentMode": "AutomaticByPlatform"
+              }
             }
           },
+
           "extension": {
             "name": "enablevmAccess",
             "publisher": "Microsoft.OSTCExtensions",
@@ -55,12 +81,12 @@
             "typeHandlerVersion": "1.5",
             "settings": {},
             "protectedSettings": {
-              "username": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/extensions_enablevmAccess_username/)",
-              "password": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/extensions_enablevmAccess_password/)",
-              "ssh_key": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/extensions_enablevmAccess_ssh_key/)",
-              "reset_ssh": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/extensions_enablevmAccess_reset_ssh/)",
-              "remove_user": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/extensions_enablevmAccess_remove_user/)",
-              "expiration": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/extensions_enablevmAccess_expiration/)"
+              "username": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/extensions_enablevmAccess_username/)",
+              "password": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/extensions_enablevmAccess_password/)",
+              "ssh_key": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/extensions_enablevmAccess_ssh_key/)",
+              "reset_ssh": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/extensions_enablevmAccess_reset_ssh/)",
+              "remove_user": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/extensions_enablevmAccess_remove_user/)",
+              "expiration": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/extensions_enablevmAccess_expiration/)"
             }
           }
         }
