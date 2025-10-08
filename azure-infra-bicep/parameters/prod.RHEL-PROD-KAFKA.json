@@ -5,7 +5,26 @@
     "serviceName": { "value": "RHEL-PROD-KAFKA" },
     "tagSuffix": { "value": "prod" },
     "location": { "value": "eastus" },
-    "vms": {
+    
+    "keyVaultName": { "value": "coda-prod-kv" },
+    "secretNames": {
+      "value": [
+        "rhel-prod-kafka-username",
+        "rhel-prod-kafka-password",
+        "rhel-prod-kafka-sshkey",
+        "rhel-prod-kafka-resetssh",
+        "rhel-prod-kafka-removeuser",
+        "rhel-prod-kafka-expiration",
+        "rhel-prod-app-username",
+        "rhel-prod-app-password",
+        "rhel-prod-app-sshkey",
+        "rhel-prod-app-resetssh",
+        "rhel-prod-app-removeuser",
+        "rhel-prod-app-expiration"
+      ]
+    },
+
+    "vmConfig": {
       "value": [
         {
           "vmName": "RHEL-PROD-KAFKA",
