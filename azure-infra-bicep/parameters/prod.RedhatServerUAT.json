@@ -5,14 +5,22 @@
     "serviceName": { "value": "RedhatServerUAT" },
     "tagSuffix":   { "value": "UAT" },
     "location": { "value": "eastus" },
-    "vms": {
+
+    "keyVaultName": { "value": "coda-uat-kv" },
+    "secretNames": {
+      "value": [
+        "rhel-admin-username",
+        "rhel-admin-password",
+        "rhel-ssh-key"
+      ]
+    },
+
+    "vmConfig": {
       "value": [
         {
           "name": "RedhatServerUAT",
           "size": "Standard_B4ms",
-          "tags": {
-            "Env": "UAT"
-          },
+          "tags": { "Env": "UAT" },
           "adminUsername": "adminuser",
           "nicId": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.Network/networkInterfaces/redhatnicuat",
           "bootDiagnostics": true,
@@ -69,25 +77,25 @@
               "username": {
                 "reference": {
                   "keyVault": {
-                    "id": "/subscriptions/<subid>/resourceGroups/<rg>/providers/Microsoft.KeyVault/vaults/<kvName>"
+                    "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.KeyVault/vaults/coda-uat-kv"
                   },
-                  "secretName": "vmAdminUsername"
+                  "secretName": "rhel-admin-username"
                 }
               },
               "password": {
                 "reference": {
                   "keyVault": {
-                    "id": "/subscriptions/<subid>/resourceGroups/<rg>/providers/Microsoft.KeyVault/vaults/<kvName>"
+                    "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.KeyVault/vaults/coda-uat-kv"
                   },
-                  "secretName": "vmAdminPassword"
+                  "secretName": "rhel-admin-password"
                 }
               },
               "ssh_key": {
                 "reference": {
                   "keyVault": {
-                    "id": "/subscriptions/<subid>/resourceGroups/<rg>/providers/Microsoft.KeyVault/vaults/<kvName>"
+                    "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.KeyVault/vaults/coda-uat-kv"
                   },
-                  "secretName": "vmSshKey"
+                  "secretName": "rhel-ssh-key"
                 }
               },
               "reset_ssh": "true",
