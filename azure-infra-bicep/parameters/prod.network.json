@@ -1,5 +1,6 @@
 {
   "vnetName": "CODA-Prod-VNet",
+  "serviceName": "network",
   "location": "eastus",
   "tags": { "Network": "CODA-Prod-VNet" },
   "addressSpace": ["10.1.0.0/16"],
