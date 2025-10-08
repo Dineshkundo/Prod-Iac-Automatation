@@ -2,7 +2,24 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "serviceName": { "value": "Matching-Service" },
+    "serviceName": { "value": "Matching-Service-PROD" },
+    "location": { "value": "eastus" },
+    "tagSuffix": { "value": "prod" },
+
+    "keyVaultName": {
+      "value": "CODA-PROD-Azure-KeyVault"
+    },
+    "secretNames": {
+      "value": {
+        "username": "matching-admin-username",
+        "password": "matching-admin-password",
+        "sshKey": "matching-ssh-key",
+        "reset_ssh": "matching-reset-ssh",
+        "remove_user": "matching-remove-user",
+        "expiration": "matching-expiration"
+      }
+    },
+
     "vms": {
       "value": [
         {
@@ -29,7 +46,7 @@
           "dataDisks": [],
           "osProfile": {
             "computerName": "Matching-Service-1",
-            "adminUsername": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/matching-admin-username/)",
+            "adminUsername": "@Microsoft.KeyVault(SecretUri=https://CODA-PROD-Azure-KeyVault.vault.azure.net/secrets/matching-admin-username/)",
             "linuxConfiguration": {
               "disablePasswordAuthentication": false,
               "provisionVMAgent": true,
@@ -47,21 +64,16 @@
             "typeHandlerVersion": "1.5",
             "settings": {},
             "protectedSettings": {
-              "username": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/matching-admin-username/)",
-              "password": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/matching-admin-password/)",
-              "ssh_key": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/matching-ssh-key/)",
-              "reset_ssh": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/matching-reset-ssh/)",
-              "remove_user": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/matching-remove-user/)",
-              "expiration": "@Microsoft.KeyVault(SecretUri=https://<kv-name>.vault.azure.net/secrets/matching-expiration/)"
+              "username": "@Microsoft.KeyVault(SecretUri=https://CODA-PROD-Azure-KeyVault.vault.azure.net/secrets/matching-admin-username/)",
+              "password": "@Microsoft.KeyVault(SecretUri=https://CODA-PROD-Azure-KeyVault.vault.azure.net/secrets/matching-admin-password/)",
+              "ssh_key": "@Microsoft.KeyVault(SecretUri=https://CODA-PROD-Azure-KeyVault.vault.azure.net/secrets/matching-ssh-key/)",
+              "reset_ssh": "@Microsoft.KeyVault(SecretUri=https://CODA-PROD-Azure-KeyVault.vault.azure.net/secrets/matching-reset-ssh/)",
+              "remove_user": "@Microsoft.KeyVault(SecretUri=https://CODA-PROD-Azure-KeyVault.vault.azure.net/secrets/matching-remove-user/)",
+              "expiration": "@Microsoft.KeyVault(SecretUri=https://CODA-PROD-Azure-KeyVault.vault.azure.net/secrets/matching-expiration/)"
             }
           }
         }
       ]
-    },
-    "location": { "value": "eastus" },
-    "tagSuffix": { "value": "Prod" },
-    "vmConfig": { "value": {} },
-    "storageConfig": { "value": {} },
-    "secrets": { "value": {} }
+    }
   }
 }
