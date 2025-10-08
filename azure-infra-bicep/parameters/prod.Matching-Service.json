@@ -20,7 +20,7 @@
       }
     },
 
-    "vms": {
+    "vm": {
       "value": [
         {
           "name": "Matching-Service-1",
