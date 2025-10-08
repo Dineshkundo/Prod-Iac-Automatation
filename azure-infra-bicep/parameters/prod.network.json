@@ -1,41 +1,47 @@
 {
-  "vnetName": "CODA-Prod-VNet",
-  "serviceName": "network",
-  "location": "eastus",
-  "tags": { "Network": "CODA-Prod-VNet" },
-  "addressSpace": ["10.1.0.0/16"],
-  "enableDdosProtection": false,
-  "encryption": { "enabled": true, "enforcement": "AllowUnencrypted" },
-  "subnets": [
-    {
-      "name": "GatewaySubnet",
-      "addressPrefixes": ["10.1.0.0/24"],
-      "serviceEndpoints": [
-        { "service": "Microsoft.Storage", "locations": ["eastus", "westus", "westus3"] }
-      ],
-      "privateEndpointNetworkPolicies": "Disabled",
-      "privateLinkServiceNetworkPolicies": "Enabled"
-    },
-    {
-      "name": "AzureFirewallSubnet",
-      "addressPrefixes": ["10.1.1.0/26"],
-      "serviceEndpoints": [
-        { "service": "Microsoft.Storage", "locations": ["eastus", "westus", "westus3"] }
-      ],
-      "privateEndpointNetworkPolicies": "Disabled",
-      "privateLinkServiceNetworkPolicies": "Enabled"
-    },
-    {
-      "name": "CODA-PROD-Private-Subnet",
-      "addressPrefixes": ["10.1.4.0/22"],
-      "nsgId": "/subscriptions/.../networkSecurityGroups/CODA-PROD-Private-Subnet-NSG",
-      "routeTableId": "/subscriptions/.../routeTables/AKS-PROD-TO-ONPREMISE",
-      "serviceEndpoints": [
-        { "service": "Microsoft.KeyVault", "locations": ["*"] },
-        { "service": "Microsoft.Storage", "locations": ["eastus", "westus", "westus3"] }
-      ],
-      "privateEndpointNetworkPolicies": "Disabled",
-      "privateLinkServiceNetworkPolicies": "Enabled"
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": { "value": "CODA-Prod-VNet" },
+    "serviceName": { "value": "network" },
+    "location": { "value": "eastus" },
+    "tags": { "value": { "Network": "CODA-Prod-VNet" } },
+    "addressSpace": { "value": ["10.1.0.0/16"] },
+    "enableDdosProtection": { "value": false },
+    "encryption": { "value": { "enabled": true, "enforcement": "AllowUnencrypted" } },
+    "subnets": {
+      "value": [
+        {
+          "name": "GatewaySubnet",
+          "addressPrefixes": ["10.1.0.0/24"],
+          "serviceEndpoints": [
+            { "service": "Microsoft.Storage", "locations": ["eastus", "westus", "westus3"] }
+          ],
+          "privateEndpointNetworkPolicies": "Disabled",
+          "privateLinkServiceNetworkPolicies": "Enabled"
+        },
+        {
+          "name": "AzureFirewallSubnet",
+          "addressPrefixes": ["10.1.1.0/26"],
+          "serviceEndpoints": [
+            { "service": "Microsoft.Storage", "locations": ["eastus", "westus", "westus3"] }
+          ],
+          "privateEndpointNetworkPolicies": "Disabled",
+          "privateLinkServiceNetworkPolicies": "Enabled"
+        },
+        {
+          "name": "CODA-PROD-Private-Subnet",
+          "addressPrefixes": ["10.1.4.0/22"],
+          "nsgId": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/coda-prod-rg/providers/Microsoft.Network/networkSecurityGroups/CODA-PROD-Private-Subnet-NSG",
+          "routeTableId": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/coda-prod-rg/providers/Microsoft.Network/routeTables/AKS-PROD-TO-ONPREMISE",
+          "serviceEndpoints": [
+            { "service": "Microsoft.KeyVault", "locations": ["eastus"] },
+            { "service": "Microsoft.Storage", "locations": ["eastus", "westus", "westus3"] }
+          ],
+          "privateEndpointNetworkPolicies": "Disabled",
+          "privateLinkServiceNetworkPolicies": "Enabled"
+        }
+      ]
     }
-  ]
+  }
 }
