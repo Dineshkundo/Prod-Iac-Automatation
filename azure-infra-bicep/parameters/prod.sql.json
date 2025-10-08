@@ -4,6 +4,7 @@
   "parameters": {
     "serviceName": { "value": "sql" },
     "tagSuffix": { "value": "prod" },
+    "location": { "value": "eastus" },
     "sqlConfig": { "value": {
       "serverName": "prod-sqlserver01",
       "location": "eastus",

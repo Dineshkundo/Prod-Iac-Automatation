@@ -1,6 +1,5 @@
 @description('Configuration object for the SQL setup')
 param sqlConfig object
-
 @secure()
 @description('Storage container path for vulnerability assessments (e.g., https://<storageaccount>.blob.core.windows.net/<container>)')
 param vulnerabilityAssessmentsStoragePath string = ''
