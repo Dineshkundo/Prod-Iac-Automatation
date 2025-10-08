@@ -25,7 +25,7 @@ targetScope = 'resourceGroup'
   'aks'
   'sql'
   'Jenkins-vm'
-  'MatchingService-PROD'
+  'Matching-Service'
   'RHEL-PROD-KAFKA'
   'network'
   'RedhatServerUAT'
@@ -105,7 +105,7 @@ module jenkins './modules/virtual-machines/CODA-PROD-Jenkins.bicep' = if (servic
 // Deploy Matching Service VMs
 // ---------------------------------------
 param vm array = []
-var vmsToDeployMatching = serviceName == 'MatchingService-PROD' ? vm : []
+var vmsToDeployMatching = serviceName == 'Matching-Service' ? vm : []
 
 module matchingService './modules/virtual-machines/MatchingService-PROD.bicep' = [for vm in vmsToDeployMatching: {
   name: 'deploy-${vm.name}'
