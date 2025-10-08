@@ -105,16 +105,16 @@ module jenkins './modules/virtual-machines/CODA-PROD-Jenkins.bicep' = if (servic
 // Deploy Matching Service VMs
 // ---------------------------------------
 param vm array = []
-
-module matchingService './modules/virtual-machines/MatchingService-PROD.bicep' = [for eachVm in vm: {
-  name: 'deploy-${eachVm.name}'
+var vmsToDeploy = serviceName == 'Matching-Service' ? vm : []
+module MatchingServicePROD './modules/virtual-machines/MatchingService-PROD.bicep' = [for vm in vmsToDeploy: {
+  name: 'deploy-${vm.name}-${tagSuffix}'
   params: {
-    vmConfig: eachVm
+    vmConfig: vm
     tagSuffix: tagSuffix
     keyVaultName: keyVaultName
   }
 }]
-
+////////////////////////////////////////////////////////////////////
 
 
 // Deploy RHEL Kafka VMs
