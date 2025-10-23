@@ -60,7 +60,7 @@ resource sqlDBVulnerability 'Microsoft.Sql/servers/databases/vulnerabilityAssess
   name: 'Default'
   properties: {
     recurringScans: sqlConfig.databaseVulnerabilityRecurringScans
-    storageContainerPath: sqlConfig.vulnerabilityAssessmentsStoragePath
+    storageContainerPath:VulnerabilityAssessmentsStoragePath
   }
 }
 
