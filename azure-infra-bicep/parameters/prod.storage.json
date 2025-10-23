@@ -10,7 +10,7 @@
     },
     "storageConfig": {
       "value": {
-        "storageAccountName": "codaprodsa",
+        "storageAccountName": "codaprodsacodaprodstorage",
         "useFixedName": true,
         "location": "eastus",
         "kind": "StorageV2",
