@@ -26,7 +26,7 @@
     },
     "vmConfig": {
       "value": {
-        "name": "Matching-Service-1",
+        "name": "Matching-Service-2",
         "location": "eastus",
         "zones": ["1"],
         "tags": { 
