@@ -4,7 +4,8 @@
   "parameters": {
     "location": { "value": "eastus" },
     "serviceName": { "value": "network" },
-    "config": {
+    "tagSuffix": { "value": "prod" },
+    "vnetConfig": {
       "value": {
         "vnetName": "CODA-Prod-VNet",
         "location": "eastus",
@@ -48,7 +49,6 @@
           }
         ]
       }
-    },
-    "tagSuffix": { "value": "prod" }
+    }
   }
 }
