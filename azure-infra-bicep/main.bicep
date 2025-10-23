@@ -228,7 +228,7 @@ module aks './modules/aks/aksCluster.bicep' = if (serviceName == 'aks') {
 /////////
 
 
-// Config objects
+// sql
 param sqlConfig object = {}
 
 module sqlModule './modules/sql/coda-prod-sqldatabase-server.bicep' = if (serviceName == 'sql') {
