@@ -59,7 +59,7 @@ param keyVaultConfig object = {}
 param secretNames object = {}
 
 @description('VM configuration (non-sensitive)')
-param vmConfig object = {}
+param vmConfig object = []
 
 
 @description('Array of VM configurations')
