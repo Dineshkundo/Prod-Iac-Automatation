@@ -41,8 +41,6 @@ param targetService string
 @description('Azure region for deployment')
 param location string
 
-@description('Deployment location')
-param location string = resourceGroup().location
 
 @description('Service to deploy')
 param serviceName string
