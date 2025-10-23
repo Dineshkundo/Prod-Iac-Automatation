@@ -41,7 +41,7 @@
         "osDiskId": "",
         "privateIp": "10.0.2.5",
         "publicIp": "52.188.31.47",
-        "networkInterfaceId": "/subscriptions/072f61b4-efbf-4a3a-9f78-9ce578e1c75d/resourceGroups/CODA_RG/providers/Microsoft.Network/networkInterfaces/jenkins-nic"
+        "networkInterfaceId": "/subscriptions/<subscriptions>/resourceGroups/CODA_RG/providers/Microsoft.Network/networkInterfaces/jenkins-nic"
       }
     }
   }
