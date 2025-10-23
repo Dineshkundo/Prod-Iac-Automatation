@@ -5,70 +5,62 @@
     "serviceName": { "value": "RHEL-PROD-KAFKA" },
     "tagSuffix": { "value": "prod" },
     "location": { "value": "eastus" },
-    
-    "keyVaultName": { "value": "coda-prod-kv" },
+
+    "keyVaultName": {
+      "value": "<your-keyvault-name>"
+    },
+
     "secretNames": {
-      "value": [
-        "rhel-prod-kafka-username",
-        "rhel-prod-kafka-password",
-        "rhel-prod-kafka-sshkey",
-        "rhel-prod-kafka-resetssh",
-        "rhel-prod-kafka-removeuser",
-        "rhel-prod-kafka-expiration",
-        "rhel-prod-app-username",
-        "rhel-prod-app-password",
-        "rhel-prod-app-sshkey",
-        "rhel-prod-app-resetssh",
-        "rhel-prod-app-removeuser",
-        "rhel-prod-app-expiration"
-      ]
+      "value": {
+        "rhel-admin-username": "rhel-admin-username",
+        "rhel-admin-password": "rhel-admin-password"
+      }
     },
 
     "vmConfig": {
-      "value": [
-        {
-          "vmName": "RHEL-PROD-KAFKA",
-          "location": "eastus",
-          "tags": { "Env": "PROD" },
-          "vmSize": "Standard_D2s_v3",
+      "value": {
+        "name": "RHEL-PROD-KAFKA",
+        "zones": [],
+        "tags": { "Env": "prod" },
+        "vmSize": "Standard_B4ms",
+        "additionalCapabilities": {},
+        "imageReference": {
           "publisher": "RedHat",
           "offer": "RHEL",
-          "sku": "95_gen2",
-          "version": "latest",
-          "osDiskId": "/subscriptions/<Sub-id>/resourceGroups/CODA-PROD-RG/providers/Microsoft.Compute/disks/RHEL-PROD-KAFKA_OsDisk_1_385c541ca3e042c99562a5c075eafb7f",
-          "dataDiskId": "",
-          "nicId": "/subscriptions/<Sub-id>/resourceGroups/CODA-PROD-RG/providers/Microsoft.Network/networkInterfaces/rhel-prod-kafka127_z2",
-          "extensions": {
-            "username": "@Microsoft.KeyVault(SecretUri=https://coda-prod-kv.vault.azure.net/secrets/rhel-prod-kafka-username/)",
-            "password": "@Microsoft.KeyVault(SecretUri=https://coda-prod-kv.vault.azure.net/secrets/rhel-prod-kafka-password/)",
-            "ssh_key": "@Microsoft.KeyVault(SecretUri=https://coda-prod-kv.vault.azure.net/secrets/rhel-prod-kafka-sshkey/)",
-            "reset_ssh": "@Microsoft.KeyVault(SecretUri=https://coda-prod-kv.vault.azure.net/secrets/rhel-prod-kafka-resetssh/)",
-            "remove_user": "@Microsoft.KeyVault(SecretUri=https://coda-prod-kv.vault.azure.net/secrets/rhel-prod-kafka-removeuser/)",
-            "expiration": "@Microsoft.KeyVault(SecretUri=https://coda-prod-kv.vault.azure.net/secrets/rhel-prod-kafka-expiration/)"
+          "sku": "7lvm-gen2",
+          "version": "latest"
+        },
+        "osDisk": {
+          "osType": "Linux",
+          "name": "RHEL-PROD-KAFKA_OsDisk",
+          "caching": "ReadWrite",
+          "storageAccountType": "Premium_LRS",
+          "id": "/subscriptions/<subid>/resourceGroups/<rg>/providers/Microsoft.Compute/disks/RHEL-PROD-KAFKA_OsDisk",
+          "deleteOption": "Detach",
+          "diskSizeGB": 64
+        },
+        "dataDisks": [],
+        "osProfile": {
+          "computerName": "RHEL-PROD-KAFKA",
+          "adminUsername": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/rhel-admin-username/)",
+          "linuxConfiguration": {
+            "disablePasswordAuthentication": false,
+            "provisionVMAgent": true
           }
         },
-        {
-          "vmName": "RHEL-PROD-APP",
-          "location": "eastus",
-          "tags": { "Env": "PROD" },
-          "vmSize": "Standard_D4s_v3",
-          "publisher": "RedHat",
-          "offer": "RHEL",
-          "sku": "95_gen2",
-          "version": "latest",
-          "osDiskId": "/subscriptions/<Sub-id>/resourceGroups/CODA-PROD-RG/providers/Microsoft.Compute/disks/RHEL-PROD-APP_OsDisk_1_3bfc541ca3e042c99562a5c075eafb8f",
-          "dataDiskId": "/subscriptions/<Sub-id>/resourceGroups/CODA-PROD-RG/providers/Microsoft.Compute/disks/RHEL-PROD-APP-DataDisk1",
-          "nicId": "/subscriptions/<Sub-id>/resourceGroups/CODA-PROD-RG/providers/Microsoft.Network/networkInterfaces/rhel-prod-appnic",
-          "extensions": {
-            "username": "@Microsoft.KeyVault(SecretUri=https://coda-prod-kv.vault.azure.net/secrets/rhel-prod-app-username/)",
-            "password": "@Microsoft.KeyVault(SecretUri=https://coda-prod-kv.vault.azure.net/secrets/rhel-prod-app-password/)",
-            "ssh_key": "@Microsoft.KeyVault(SecretUri=https://coda-prod-kv.vault.azure.net/secrets/rhel-prod-app-sshkey/)",
-            "reset_ssh": "@Microsoft.KeyVault(SecretUri=https://coda-prod-kv.vault.azure.net/secrets/rhel-prod-app-resetssh/)",
-            "remove_user": "@Microsoft.KeyVault(SecretUri=https://coda-prod-kv.vault.azure.net/secrets/rhel-prod-app-removeuser/)",
-            "expiration": "@Microsoft.KeyVault(SecretUri=https://coda-prod-kv.vault.azure.net/secrets/rhel-prod-app-expiration/)"
+        "nicId": "/subscriptions/<subid>/resourceGroups/<rg>/providers/Microsoft.Network/networkInterfaces/rhel-prod-kafka-nic",
+        "extension": {
+          "name": "enablevmAccess",
+          "publisher": "Microsoft.OSTCExtensions",
+          "type": "VMAccessForLinux",
+          "typeHandlerVersion": "1.5",
+          "settings": {},
+          "protectedSettings": {
+            "username": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/rhel-admin-username/)",
+            "password": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/rhel-admin-password/)"
           }
         }
-      ]
+      }
     }
   }
 }
