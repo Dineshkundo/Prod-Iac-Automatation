@@ -6,7 +6,7 @@
     "serviceName": { "value": "storage" },
     "storageConfig": {
       "value": {
-        "storageAccountName": "codaprodsa",
+        "storageAccountName": "codaprodsa01",
         "useFixedName": true,
         "location": "eastus",
         "kind": "StorageV2",
