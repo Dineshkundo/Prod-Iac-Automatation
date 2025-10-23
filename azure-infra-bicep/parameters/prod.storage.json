@@ -38,8 +38,8 @@
           {
             "name": "CODA-PROD-Private-Subnet",
             "addressPrefixes": ["10.1.4.0/22"],
-            "nsgId": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/coda-prod-rg/providers/Microsoft.Network/networkSecurityGroups/CODA-PROD-Private-Subnet-NSG",
-            "routeTableId": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/coda-prod-rg/providers/Microsoft.Network/routeTables/AKS-PROD-TO-ONPREMISE",
+            "nsgId": "/subscriptions/072f61b4-efbf-4a3a-9f78-9ce578e1c75d/resourceGroups/coda-prod-rg/providers/Microsoft.Network/networkSecurityGroups/CODA-PROD-Private-Subnet-NSG",
+            "routeTableId": "/subscriptions/072f61b4-efbf-4a3a-9f78-9ce578e1c75d/resourceGroups/coda-prod-rg/providers/Microsoft.Network/routeTables/AKS-PROD-TO-ONPREMISE",
             "serviceEndpoints": [
               { "service": "Microsoft.KeyVault", "locations": ["eastus"] },
               { "service": "Microsoft.Storage", "locations": ["eastus", "westus", "westus3"] }
