@@ -5,11 +5,14 @@
     "location": { "value": "eastus" },
     "serviceName": { "value": "network" },
     "tagSuffix": { "value": "prod" },
-    "vnetConfig": {
+    "config": {
       "value": {
         "vnetName": "CODA-Prod-VNet",
         "location": "eastus",
-        "tags": { "Network": "CODA-Prod-VNet" },
+        "tags": {
+          "Environment": "prod",
+          "Network": "CODA-Prod-VNet"
+        },
         "addressSpace": ["10.1.0.0/16"],
         "enableDdosProtection": false,
         "encryption": {
@@ -21,7 +24,10 @@
             "name": "GatewaySubnet",
             "addressPrefixes": ["10.1.0.0/24"],
             "serviceEndpoints": [
-              { "service": "Microsoft.Storage", "locations": ["eastus", "westus", "westus3"] }
+              {
+                "service": "Microsoft.Storage",
+                "locations": ["eastus", "westus", "westus3"]
+              }
             ],
             "privateEndpointNetworkPolicies": "Disabled",
             "privateLinkServiceNetworkPolicies": "Enabled"
@@ -30,7 +36,10 @@
             "name": "AzureFirewallSubnet",
             "addressPrefixes": ["10.1.1.0/26"],
             "serviceEndpoints": [
-              { "service": "Microsoft.Storage", "locations": ["eastus", "westus", "westus3"] }
+              {
+                "service": "Microsoft.Storage",
+                "locations": ["eastus", "westus", "westus3"]
+              }
             ],
             "privateEndpointNetworkPolicies": "Disabled",
             "privateLinkServiceNetworkPolicies": "Enabled"
@@ -42,7 +51,10 @@
             "routeTableId": "/subscriptions/072f61b4-efbf-4a3a-9f78-9ce578e1c75d/resourceGroups/coda-prod-rg/providers/Microsoft.Network/routeTables/AKS-PROD-TO-ONPREMISE",
             "serviceEndpoints": [
               { "service": "Microsoft.KeyVault", "locations": ["eastus"] },
-              { "service": "Microsoft.Storage", "locations": ["eastus", "westus", "westus3"] }
+              {
+                "service": "Microsoft.Storage",
+                "locations": ["eastus", "westus", "westus3"]
+              }
             ],
             "privateEndpointNetworkPolicies": "Disabled",
             "privateLinkServiceNetworkPolicies": "Enabled"
