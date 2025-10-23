@@ -3,108 +3,106 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "serviceName": { "value": "RedhatServerUAT" },
-    "tagSuffix":   { "value": "UAT" },
+    "tagSuffix": { "value": "UAT" },
     "location": { "value": "eastus" },
 
     "keyVaultName": { "value": "coda-uat-kv" },
     "secretNames": {
-      "value": [
-        "rhel-admin-username",
-        "rhel-admin-password",
-        "rhel-ssh-key"
-      ]
+      "value": {
+        "rhel-admin-username": "rhel-admin-username",
+        "rhel-admin-password": "rhel-admin-password",
+        "rhel-ssh-key": "rhel-ssh-key"
+      }
     },
 
     "vmConfig": {
-      "value": [
-        {
-          "name": "RedhatServerUAT",
-          "size": "Standard_B4ms",
-          "tags": { "Env": "UAT" },
-          "adminUsername": "adminuser",
-          "nicId": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.Network/networkInterfaces/redhatnicuat",
-          "bootDiagnostics": true,
-          "encryptionAtHost": true,
-          "imageReference": {
-            "publisher": "RedHat",
-            "offer": "RHEL",
-            "sku": "7lvm-gen2",
-            "version": "latest"
+      "value": {
+        "name": "RedhatServerUAT",
+        "size": "Standard_B4ms",
+        "tags": { "Env": "UAT" },
+        "adminUsername": "adminuser",
+        "nicId": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.Network/networkInterfaces/redhatnicuat",
+        "bootDiagnostics": true,
+        "encryptionAtHost": true,
+        "imageReference": {
+          "publisher": "RedHat",
+          "offer": "RHEL",
+          "sku": "7lvm-gen2",
+          "version": "latest"
+        },
+        "osDisk": {
+          "osType": "Linux",
+          "name": "RedhatServerUAT_OsDisk",
+          "createOption": "FromImage",
+          "caching": "ReadWrite",
+          "managedDisk": {
+            "storageAccountType": "Premium_LRS",
+            "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.Compute/disks/RedhatServerUAT_OsDisk_1"
           },
-          "osDisk": {
-            "osType": "Linux",
-            "name": "RedhatServerUAT_OsDisk",
-            "createOption": "FromImage",
-            "caching": "ReadWrite",
+          "deleteOption": "Detach",
+          "diskSizeGB": 64
+        },
+        "dataDisks": [
+          {
+            "lun": 0,
+            "name": "RedhatServerUAT-datadisk1",
+            "createOption": "Attach",
+            "caching": "None",
             "managedDisk": {
-              "storageAccountType": "Premium_LRS",
-              "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.Compute/disks/RedhatServerUAT_OsDisk_1"
+              "storageAccountType": "Standard_LRS",
+              "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.Compute/disks/RedhatServerUAT-datadisk1"
             },
             "deleteOption": "Detach",
-            "diskSizeGB": 64
+            "diskSizeGB": 64,
+            "toBeDetached": false
+          }
+        ],
+        "linuxConfiguration": {
+          "disablePasswordAuthentication": false,
+          "provisionVMAgent": true,
+          "patchSettings": {
+            "patchMode": "ImageDefault",
+            "assessmentMode": "AutomaticByPlatform"
           },
-          "dataDisks": [
-            {
-              "lun": 0,
-              "name": "RedhatServerUAT-datadisk1",
-              "createOption": "Attach",
-              "caching": "None",
-              "managedDisk": {
-                "storageAccountType": "Standard_LRS",
-                "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.Compute/disks/RedhatServerUAT-datadisk1"
-              },
-              "deleteOption": "Detach",
-              "diskSizeGB": 64,
-              "toBeDetached": false
-            }
-          ],
-          "linuxConfiguration": {
-            "disablePasswordAuthentication": false,
-            "provisionVMAgent": true,
-            "patchSettings": {
-              "patchMode": "ImageDefault",
-              "assessmentMode": "AutomaticByPlatform"
+          "enableVMAgentPlatformUpdates": false
+        },
+        "extension": {
+          "name": "enablevmAccess",
+          "publisher": "Microsoft.OSTCExtensions",
+          "type": "VMAccessForLinux",
+          "typeHandlerVersion": "1.5",
+          "settings": {},
+          "protectedSettings": {
+            "username": {
+              "reference": {
+                "keyVault": {
+                  "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.KeyVault/vaults/coda-uat-kv"
+                },
+                "secretName": "rhel-admin-username"
+              }
             },
-            "enableVMAgentPlatformUpdates": false
-          },
-          "extension": {
-            "name": "enablevmAccess",
-            "publisher": "Microsoft.OSTCExtensions",
-            "type": "VMAccessForLinux",
-            "typeHandlerVersion": "1.5",
-            "settings": {},
-            "protectedSettings": {
-              "username": {
-                "reference": {
-                  "keyVault": {
-                    "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.KeyVault/vaults/coda-uat-kv"
-                  },
-                  "secretName": "rhel-admin-username"
-                }
-              },
-              "password": {
-                "reference": {
-                  "keyVault": {
-                    "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.KeyVault/vaults/coda-uat-kv"
-                  },
-                  "secretName": "rhel-admin-password"
-                }
-              },
-              "ssh_key": {
-                "reference": {
-                  "keyVault": {
-                    "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.KeyVault/vaults/coda-uat-kv"
-                  },
-                  "secretName": "rhel-ssh-key"
-                }
-              },
-              "reset_ssh": "true",
-              "remove_user": "false",
-              "expiration": "2025-12-31"
-            }
+            "password": {
+              "reference": {
+                "keyVault": {
+                  "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.KeyVault/vaults/coda-uat-kv"
+                },
+                "secretName": "rhel-admin-password"
+              }
+            },
+            "ssh_key": {
+              "reference": {
+                "keyVault": {
+                  "id": "/subscriptions/<subid>/resourceGroups/CODA_RG/providers/Microsoft.KeyVault/vaults/coda-uat-kv"
+                },
+                "secretName": "rhel-ssh-key"
+              }
+            },
+            "reset_ssh": "true",
+            "remove_user": "false",
+            "expiration": "2025-12-31"
           }
         }
-      ]
+      }
     }
   }
 }
