@@ -8,6 +8,7 @@
     "sqlConfig": { "value": {
       "serverName": "prod-sqlserver01",
       "location": "eastus",
+      "vulnerabilityAssessmentsStoragePath": { "value": "https://mystorage.blob.core.windows.net/sqlva" },
       "adminLogin": "sqladminuser",
       "tags": {
         "Owner": "FinOps",
@@ -40,7 +41,6 @@
       }
     }},
     "keyVaultName": { "value": "" },
-    "secretNames": { "value": [] },
-    "vulnerabilityAssessmentsStoragePath": { "value": "https://mystorage.blob.core.windows.net/sqlva" }
+    "secretNames": { "value": [] }
   }
 }
