@@ -2,17 +2,21 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "serviceName":{"value": "keyvault"},
+    "serviceName": { "value": "keyvault" },
     "createKeyVault": { "value": true },
-    "vaultName": { "value": "coda-prod-kv" },
-    "location": { "value": "eastus" },
-    "skuName": { "value": "standard" },
-    "enableRbac": { "value": true },
-    "enablePurgeProtection": { "value": true },
-    "softDeleteRetentionDays": { "value": 90 },
-    "virtualNetworkRules": { "value": [
-      "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/coda-prod-rg/providers/Microsoft.Network/virtualNetworks/coda-prod-vnet/subnets/coda-prod-private-subnet"
-    ]},
-    "accessPolicies": { "value": [] }
+    "keyVaultConfig": {
+      "value": {
+        "vaultName": "coda-prod-kv",
+        "location": "eastus",
+        "skuName": "standard",
+        "enableRbac": true,
+        "enablePurgeProtection": true,
+        "softDeleteRetentionDays": 90,
+        "virtualNetworkRules": [
+          "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/coda-prod-rg/providers/Microsoft.Network/virtualNetworks/coda-prod-vnet/subnets/coda-prod-private-subnet"
+        ],
+        "accessPolicies": []
+      }
+    }
   }
 }
