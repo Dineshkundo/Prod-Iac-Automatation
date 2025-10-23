@@ -37,7 +37,7 @@ targetScope = 'resourceGroup'
 
 
 @description('Azure region for deployment')
-param location string
+param location string = resourceGroup().location
 
 
 @description('Service to deploy')
