@@ -202,7 +202,7 @@ module storage './modules/Storage/storage.bicep' = if (serviceName == 'storage')
   name: 'storageModule'
   params: {
     storageConfig: storageConfig
-    tagSuffix: tagSuffix
+    // tagSuffix: tagSuffix
   }
 }
 
