@@ -10,11 +10,11 @@
       "value": "<your-keyvault-name>"
     },
     "secretNames": {
-      "value": [
-        "rhel-admin-username",
-        "rhel-admin-password",
-        "boomi-admin-username"
-      ]
+      "value": {
+    "rhel-admin-username": "rhel-admin-username",
+    "rhel-admin-password": "rhel-admin-password",
+    "boomi-admin-username": "boomi-admin-username"
+  }
     },
 
     "vmConfig": {
