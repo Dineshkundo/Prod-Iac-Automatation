@@ -27,7 +27,6 @@
     "vmConfig": {
       "value": {
         "name": "CODA-PROD-Jenkins",
-        "location": "eastus",
         "vmSize": "Standard_D4s_v3",
         "zones": ["2"],
         "adminUsername": "jenkinsadmin",
@@ -41,7 +40,7 @@
         "osDiskId": "",
         "privateIp": "10.0.2.5",
         "publicIp": "52.188.31.47",
-        "networkInterfaceId": "/subscriptions/<sub-id>/resourceGroups/CODA_RG/providers/Microsoft.Network/networkInterfaces/jenkins-nic"
+        "networkInterfaceId": "/subscriptions/072f61b4-efbf-4a3a-9f78-9ce578e1c75d/resourceGroups/CODA_RG/providers/Microsoft.Network/networkInterfaces/jenkins-nic"
       }
     }
   }
