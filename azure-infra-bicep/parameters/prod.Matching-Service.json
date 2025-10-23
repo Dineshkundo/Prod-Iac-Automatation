@@ -43,7 +43,7 @@
         "storageAccountType": "Premium_LRS",
         "osDiskSizeGB": 64,
         "adminUsername": "matchingadmin",
-        "nicId": "/subscriptions/<subscription-id>/resourceGroups/CODA_RG/providers/Microsoft.Network/networkInterfaces/matching-service427_z1"
+        "nicId": "/subscriptions/072f61b4-efbf-4a3a-9f78-9ce578e1c75d/resourceGroups/CODA_RG/providers/Microsoft.Network/networkInterfaces/matching-service427_z1"
       }
     }
   }
