@@ -93,6 +93,7 @@ module jenkins './modules/virtual-machines/CODA-PROD-Jenkins.bicep' = if (servic
   name: 'deployJenkinsVm'
   params: {
     vmConfig: vmConfig
+    location: location
     tagSuffix: tagSuffix
     keyVaultName: keyVaultName
     secretNames: secretNames
