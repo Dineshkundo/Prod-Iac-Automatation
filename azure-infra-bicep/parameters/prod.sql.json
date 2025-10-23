@@ -40,6 +40,7 @@
       }
     }},
     "keyVaultName": { "value": "" },
-    "secretNames": { "value": [] }
+    "secretNames": { "value": [] },
+    "vulnerabilityAssessmentsStoragePath": { "value": "https://mystorage.blob.core.windows.net/sqlva" }
   }
 }
