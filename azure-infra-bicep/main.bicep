@@ -106,8 +106,8 @@ module jenkins './modules/virtual-machines/CODA-PROD-Jenkins.bicep' = if (servic
 // ---------------------------------------
 // Deploy Matching Service VMs
 // ---------------------------------------
-param vm array = []
-var vmsToDeploy = serviceName == 'Matching-Service' ? vm : []
+// param vm array = []
+var vmsToDeploy = serviceName == 'Matching-Service' ? vmConfig : []
 module MatchingServicePROD './modules/virtual-machines/MatchingService-PROD.bicep' = [for vm in vmsToDeploy: {
   name: 'deploy-${vm.name}-${tagSuffix}'
   params: {
