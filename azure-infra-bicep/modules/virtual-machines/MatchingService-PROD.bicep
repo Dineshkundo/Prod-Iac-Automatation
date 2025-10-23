@@ -1,4 +1,4 @@
-param vmConfig object
+param vmConfig array
 param tagSuffix string
 param keyVaultName string
 

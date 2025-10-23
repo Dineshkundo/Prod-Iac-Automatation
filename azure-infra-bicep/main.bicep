@@ -59,7 +59,7 @@ param keyVaultConfig object = {}
 param secretNames object = {}
 
 @description('VM configuration (non-sensitive)')
-param vmConfig object = []
+param vmConfig object = {}
 
 
 @description('Array of VM configurations')
@@ -106,8 +106,8 @@ module jenkins './modules/virtual-machines/CODA-PROD-Jenkins.bicep' = if (servic
 // ---------------------------------------
 // Deploy Matching Service VMs
 // ---------------------------------------
-// param vm array = []
-var vmsToDeploy = serviceName == 'Matching-Service' ? vmConfig : []
+param vm array = []
+var vmsToDeploy = serviceName == 'Matching-Service' ? vm : []
 module MatchingServicePROD './modules/virtual-machines/MatchingService-PROD.bicep' = [for vm in vmsToDeploy: {
   name: 'deploy-${vm.name}-${tagSuffix}'
   params: {
