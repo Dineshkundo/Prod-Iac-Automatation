@@ -18,7 +18,7 @@
     },
 
     "vmConfig": {
-      "value": [
+      "value": 
         {
           "name": "RHELDevQa",
           "zones": [],
@@ -75,50 +75,7 @@
               "password": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/rhel-admin-password/)"
             }
           }
-        },
-        {
-          "name": "Boomi-Integration",
-          "zones": [ "1" ],
-          "tags": { "Bhoomi": "Integration server" },
-          "vmSize": "Standard_D2s_v3",
-          "additionalCapabilities": { "hibernationEnabled": false },
-          "imageReference": {
-            "publisher": "MicrosoftWindowsServer",
-            "offer": "WindowsServer",
-            "sku": "2019-datacenter-gensecond",
-            "version": "latest"
-          },
-          "osDisk": {
-            "osType": "Windows",
-            "name": "Boomi-Integration_OsDisk",
-            "caching": "ReadWrite",
-            "storageAccountType": "StandardSSD_LRS",
-            "id": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Compute/disks/Boomi-Integration_OsDisk",
-            "deleteOption": "Delete",
-            "diskSizeGB": 127
-          },
-          "dataDisks": [],
-          "osProfile": {
-            "computerName": "Boomi-Integrati",
-            "adminUsername": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/boomi-admin-username/)",
-            "windowsConfiguration": {
-              "provisionVMAgent": true,
-              "enableAutomaticUpdates": true
-            }
-          },
-          "nicId": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Network/networkInterfaces/boomi-integration714_z1",
-          "extension": {
-            "name": "enablevmAccess",
-            "publisher": "Microsoft.Compute",
-            "type": "VMAccessAgent",
-            "typeHandlerVersion": "2.0",
-            "settings": {
-              "userName": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/boomi-admin-username/)"
-            },
-            "protectedSettings": {}
-          }
-        }
-      ]
+        } 
     }
   }
 }
