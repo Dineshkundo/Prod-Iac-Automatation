@@ -36,7 +36,7 @@ targetScope = 'resourceGroup'
 ])
 
 @description('Deployment location')
-param location string
+param location string = resourceGroup().location
 
 @description('Service to deploy')
 param serviceName string
