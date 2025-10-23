@@ -2,10 +2,15 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "serviceName": { "value": "Matching-Service" },
-    "location": { "value": "eastus" },
-    "tagSuffix": { "value": "prod" },
-
+    "serviceName": { 
+      "value": "Matching-Service" 
+    },
+    "location": { 
+      "value": "eastus" 
+    },
+    "tagSuffix": { 
+      "value": "prod" 
+    },
     "keyVaultName": {
       "value": "CODA-PROD-Azure-KeyVault"
     },
@@ -19,61 +24,27 @@
         "expiration": "matching-expiration"
       }
     },
-
     "vmConfig": {
-      "value": [
-        {
-          "name": "Matching-Service-1",
-          "zones": ["1"],
-          "tags": { "service": "matching-engine" },
-          "vmSize": "Standard_D32s_v3",
-          "additionalCapabilities": { "hibernationEnabled": false },
-          "imageReference": {
-            "publisher": "Canonical",
-            "offer": "0001-com-ubuntu-server-jammy",
-            "sku": "22_04-lts-gen2",
-            "version": "latest"
-          },
-          "osDisk": {
-            "osType": "Linux",
-            "name": "Matching-Service-1_OsDisk",
-            "caching": "ReadWrite",
-            "storageAccountType": "Premium_LRS",
-            "id": "/subscriptions/<subscription-id>/resourceGroups/CODA_RG/providers/Microsoft.Compute/disks/Matching-Service-1_OsDisk",
-            "deleteOption": "Detach",
-            "diskSizeGB": 64
-          },
-          "dataDisks": [],
-          "osProfile": {
-            "computerName": "Matching-Service-1",
-            "adminUsername": "@Microsoft.KeyVault(SecretUri=https://CODA-PROD-Azure-KeyVault.vault.azure.net/secrets/matching-admin-username/)",
-            "linuxConfiguration": {
-              "disablePasswordAuthentication": false,
-              "provisionVMAgent": true,
-              "patchSettings": {
-                "patchMode": "ImageDefault",
-                "assessmentMode": "AutomaticByPlatform"
-              }
-            }
-          },
-          "nicId": "/subscriptions/<subscription-id>/resourceGroups/CODA_RG/providers/Microsoft.Network/networkInterfaces/matching-service427_z1",
-          "extension": {
-            "name": "enablevmAccess",
-            "publisher": "Microsoft.OSTCExtensions",
-            "type": "VMAccessForLinux",
-            "typeHandlerVersion": "1.5",
-            "settings": {},
-            "protectedSettings": {
-              "username": "@Microsoft.KeyVault(SecretUri=https://CODA-PROD-Azure-KeyVault.vault.azure.net/secrets/matching-admin-username/)",
-              "password": "@Microsoft.KeyVault(SecretUri=https://CODA-PROD-Azure-KeyVault.vault.azure.net/secrets/matching-admin-password/)",
-              "ssh_key": "@Microsoft.KeyVault(SecretUri=https://CODA-PROD-Azure-KeyVault.vault.azure.net/secrets/matching-ssh-key/)",
-              "reset_ssh": "@Microsoft.KeyVault(SecretUri=https://CODA-PROD-Azure-KeyVault.vault.azure.net/secrets/matching-reset-ssh/)",
-              "remove_user": "@Microsoft.KeyVault(SecretUri=https://CODA-PROD-Azure-KeyVault.vault.azure.net/secrets/matching-remove-user/)",
-              "expiration": "@Microsoft.KeyVault(SecretUri=https://CODA-PROD-Azure-KeyVault.vault.azure.net/secrets/matching-expiration/)"
-            }
-          }
-        }
-      ]
+      "value": {
+        "name": "Matching-Service-1",
+        "location": "eastus",
+        "zones": ["1"],
+        "tags": { 
+          "service": "matching-engine" 
+        },
+        "vmSize": "Standard_D32s_v3",
+        "image": {
+          "publisher": "Canonical",
+          "offer": "0001-com-ubuntu-server-jammy",
+          "sku": "22_04-lts-gen2",
+          "version": "latest"
+        },
+        "osType": "Linux",
+        "storageAccountType": "Premium_LRS",
+        "osDiskSizeGB": 64,
+        "adminUsername": "matchingadmin",
+        "nicId": "/subscriptions/<subscription-id>/resourceGroups/CODA_RG/providers/Microsoft.Network/networkInterfaces/matching-service427_z1"
+      }
     }
   }
 }
