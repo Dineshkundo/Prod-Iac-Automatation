@@ -19,6 +19,9 @@
 
 targetScope = 'resourceGroup'
 
+@description('Azure region for deployment')
+param location string = resourceGroup().location
+
 @allowed([
   'keyvault'
   'storage'
@@ -35,9 +38,6 @@ targetScope = 'resourceGroup'
 
 ])
 
-
-@description('Azure region for deployment')
-param location string = resourceGroup().location
 
 
 @description('Service to deploy')
