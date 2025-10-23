@@ -2,15 +2,11 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "location": {
-      "value": "eastus"
-    },
-    "serviceName": {
-      "value": "storage"
-    },
+    "location": { "value": "eastus" },
+    "serviceName": { "value": "storage" },
     "storageConfig": {
       "value": {
-        "storageAccountName": "codaprodsacodaprodstorage",
+        "storageAccountName": "codaprodsa",
         "useFixedName": true,
         "location": "eastus",
         "kind": "StorageV2",
@@ -40,6 +36,7 @@
         "fileShares": [],
         "factoryNames": []
       }
-    }
+    },
+    "tagSuffix": { "value": "prod" }
   }
 }
