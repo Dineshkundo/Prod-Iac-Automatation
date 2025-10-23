@@ -27,6 +27,7 @@
     "vmConfig": {
       "value": {
         "name": "CODA-PROD-Jenkins",
+        "location": "eastus",
         "vmSize": "Standard_D4s_v3",
         "zones": ["2"],
         "adminUsername": "jenkinsadmin",
