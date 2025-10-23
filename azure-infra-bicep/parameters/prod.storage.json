@@ -34,9 +34,9 @@
           "sqldbauditlogs"
         ],
         "fileShares": [],
-        "factoryNames": []
+        "factoryNames": [],
+        "tagSuffix": "prod"   
       }
-    },
-    "tagSuffix": { "value": "prod" }
+    }
   }
 }
