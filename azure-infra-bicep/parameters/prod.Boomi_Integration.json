@@ -9,73 +9,73 @@
     "keyVaultName": {
       "value": "<your-keyvault-name>"
     },
+
     "secretNames": {
       "value": {
-    "rhel-admin-username": "rhel-admin-username",
-    "rhel-admin-password": "rhel-admin-password",
-    "boomi-admin-username": "boomi-admin-username"
-  }
+        "rhel-admin-username": "rhel-admin-username",
+        "rhel-admin-password": "rhel-admin-password",
+        "boomi-admin-username": "boomi-admin-username"
+      }
     },
 
     "vmConfig": {
-      "value": 
-        {
-          "name": "RHELDevQa",
-          "zones": [],
-          "tags": { "Env": "prod" },
-          "vmSize": "Standard_B4ms",
-          "additionalCapabilities": {},
-          "imageReference": {
-            "publisher": "RedHat",
-            "offer": "RHEL",
-            "sku": "7lvm-gen2",
-            "version": "latest"
-          },
-          "osDisk": {
-            "osType": "Linux",
-            "name": "RHELDevQa_OsDisk",
-            "caching": "ReadWrite",
-            "storageAccountType": "Premium_LRS",
-            "id": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Compute/disks/RHELDevQa_OsDisk",
+      "value": {
+        "name": "RHELDevQa",
+        "zones": [],
+        "tags": { "Env": "prod" },
+        "vmSize": "Standard_B4ms",
+        "additionalCapabilities": {},
+        "imageReference": {
+          "publisher": "RedHat",
+          "offer": "RHEL",
+          "sku": "7lvm-gen2",
+          "version": "latest"
+        },
+        "osDisk": {
+          "osType": "Linux",
+          "name": "RHELDevQa_OsDisk",
+          "caching": "ReadWrite",
+          "storageAccountType": "Premium_LRS",
+          "id": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Compute/disks/RHELDevQa_OsDisk",
+          "deleteOption": "Detach",
+          "diskSizeGB": 64
+        },
+        "dataDisks": [
+          {
+            "lun": 0,
+            "name": "RHELDevQa-datadisk1",
+            "createOption": "Attach",
+            "caching": "None",
+            "managedDisk": {
+              "storageAccountType": "Standard_LRS",
+              "id": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Compute/disks/RHELDevQa-datadisk1"
+            },
             "deleteOption": "Detach",
-            "diskSizeGB": 64
-          },
-          "dataDisks": [
-            {
-              "lun": 0,
-              "name": "RHELDevQa-datadisk1",
-              "createOption": "Attach",
-              "caching": "None",
-              "managedDisk": {
-                "storageAccountType": "Standard_LRS",
-                "id": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Compute/disks/RHELDevQa-datadisk1"
-              },
-              "deleteOption": "Detach",
-              "diskSizeGB": 64,
-              "toBeDetached": false
-            }
-          ],
-          "osProfile": {
-            "computerName": "RHELDevQa",
-            "adminUsername": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/rhel-admin-username/)",
-            "linuxConfiguration": {
-              "disablePasswordAuthentication": false,
-              "provisionVMAgent": true
-            }
-          },
-          "nicId": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Network/networkInterfaces/rheldevqanic",
-          "extension": {
-            "name": "enablevmAccess",
-            "publisher": "Microsoft.OSTCExtensions",
-            "type": "VMAccessForLinux",
-            "typeHandlerVersion": "1.5",
-            "settings": {},
-            "protectedSettings": {
-              "username": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/rhel-admin-username/)",
-              "password": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/rhel-admin-password/)"
-            }
+            "diskSizeGB": 64,
+            "toBeDetached": false
           }
-        } 
+        ],
+        "osProfile": {
+          "computerName": "RHELDevQa",
+          "adminUsername": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/rhel-admin-username/)",
+          "linuxConfiguration": {
+            "disablePasswordAuthentication": false,
+            "provisionVMAgent": true
+          }
+        },
+        "nicId": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Network/networkInterfaces/rheldevqanic",
+        "extension": {
+          "name": "enablevmAccess",
+          "publisher": "Microsoft.OSTCExtensions",
+          "type": "VMAccessForLinux",
+          "typeHandlerVersion": "1.5",
+          "settings": {},
+          "protectedSettings": {
+            "username": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/rhel-admin-username/)",
+            "password": "@Microsoft.KeyVault(SecretUri=https://<your-keyvault-name>.vault.azure.net/secrets/rhel-admin-password/)"
+          }
+        }
+      }
     }
   }
 }
