@@ -60,6 +60,7 @@ param secretNames object = {}
 
 @description('VM configuration (non-sensitive)')
 param vmConfig object = {}
+param vnetConfig object = {}
 
 
 @description('Array of VM configurations')
