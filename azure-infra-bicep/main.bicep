@@ -186,7 +186,7 @@ param vnetConfig object = {}
 module vnetModule './modules/Network/CODA-Prod-VNet.bicep' = if (serviceName == 'network') {
   name: 'deployVNet'
   params: {
-    config: vnetConfig
+    config: vnetConfig  
     tagSuffix: tagSuffix
   }
 }
