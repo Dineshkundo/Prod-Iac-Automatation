@@ -181,7 +181,7 @@ module Boomi './modules/virtual-machines/Boomi_Integration.bicep' = [for vm in v
 
 ///
 // Networking
-param vnetConfig object
+param vnetConfig object = {}
 
 module vnetModule './modules/Network/CODA-Prod-VNet.bicep' = if (serviceName == 'network') {
   name: 'deployVNet'
