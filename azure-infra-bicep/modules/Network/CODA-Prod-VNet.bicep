@@ -2,6 +2,7 @@ targetScope = 'resourceGroup'
 
 @description('Full VNet configuration object')
 param config object
+param vnetConfig object 
 
 
 @description('Tag suffix for resource tagging')
