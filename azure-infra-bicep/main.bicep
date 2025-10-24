@@ -60,7 +60,6 @@ param secretNames object = {}
 
 @description('VM configuration (non-sensitive)')
 param vmConfig object = {}
-param vnetConfig object = {}
 
 
 @description('Array of VM configurations')
@@ -182,7 +181,7 @@ module Boomi './modules/virtual-machines/Boomi_Integration.bicep' = [for vm in v
 
 ///
 // Networking
-param vnetConfig object = {}
+param vnetConfig object 
 
 
 module vnetModule './modules/Network/CODA-Prod-VNet.bicep' = if (serviceName == 'network') {
