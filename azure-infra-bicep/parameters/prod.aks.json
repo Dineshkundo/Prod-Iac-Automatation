@@ -47,6 +47,6 @@
       "accessTier": "Hot"
     }},
     "keyVaultName": { "value": "" },
-    "secretNames": { "value": [] }
+    "secretNames": { "value": {} }
   }
 }
