@@ -16,6 +16,7 @@
         "vnetName": "CODA-Prod-VNet",
         "location": "eastus",
         "tags": {
+          "Environment": "prod",
           "Network": "CODA-Prod-VNet"
         },
         "addressSpace": [
@@ -68,8 +69,8 @@
             "addressPrefixes": [
               "10.1.4.0/22"
             ],
-            "nsgId": "/subscriptions/<Sub-id>/Microsoft.Network/networkSecurityGroups/CODA-PROD-Private-Subnet-NSG",
-            "routeTableId": "/subscriptions/<Sub-id>/Microsoft.Network/routeTables/AKS-PROD-TO-ONPREMISE",
+            "nsgId": "/subscriptions/<sub-id>/resourceGroups/CODA-PROD-RG/providers/Microsoft.Network/networkSecurityGroups/CODA-PROD-Private-Subnet-NSG",
+            "routeTableId": "/subscriptions/<sub-id>/resourceGroups/CODA-PROD-RG/providers/Microsoft.Network/routeTables/AKS-PROD-TO-ONPREMISE",
             "serviceEndpoints": [
               {
                 "service": "Microsoft.KeyVault",
