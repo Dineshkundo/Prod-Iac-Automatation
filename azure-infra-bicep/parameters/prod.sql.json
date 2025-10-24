@@ -41,6 +41,6 @@
       }
     }},
     "keyVaultName": { "value": "" },
-    "secretNames": { "value": "" }
+    "secretNames": { "value": {} }
   }
 }
